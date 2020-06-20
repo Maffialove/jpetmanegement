@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MyPetStore Management</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+
+</div>
+<div id="Content">
+    <div id="BackLink">
+        <a href="/catalog/view">Return to Main Menu</a>
+    </div>
+
+    <div id="Catalog">
+        <table>
+            <tr>
+                <th>User ID</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>status</th>
+                <th>address1</th>
+                <th>address2</th>
+                <th>City</th>
+                <th>state</th>
+                <th>zip</th>
+                <th>country</th>
+                <th>phone</th>
+                <th>password</th>
+            </tr>
+
+            <tr>
+                <td th:text="${account.username}">User ID</td>
+                <td th:text="${account.email}">Email</td>
+                <td th:text="${account.firstName}">First Name</td>
+                <td th:text="${account.lastName}">Last Name</td>
+                <td th:text="${account.status}">status</td>
+                <td th:text="${account.address1}">address1</td>
+                <td th:text="${account.address2}">address2</td>
+                <td th:text="${account.city}">City Name</td>
+                <td th:text="${account.state}">state Name</td>
+                <td th:text="${account.zip}">zip Name</td>
+                <td th:text="${account.country}">country Name</td>
+                <td th:text="${account.phone}">phone</td>
+                <td th:text="${account.password}">password</td>
+            </tr>
+            <tr>
+                <form action="/account/updateAccountInfo" method="get">
+            <tr>原的id：</tr>
+                    <input type="text" name="userId" th:value="${account.username}" size="14" />
+            <tr>email：</tr>
+                    <input type="text" name="email"th:value="${account.email}" size="14" />
+            <tr>firstName：</tr>
+                    <input type="text" name="firstName"th:value="${account.firstName}" size="14" />
+            <tr>lastName：</tr>
+                    <input type="text" name="lastName" th:value="${account.lastName}"size="14" />
+            <br>
+            <tr>status：</tr>
+                    <input type="text" name="status"th:value="${account.status}" size="14" />
+
+            <tr>address1：</tr>
+                    <input type="text" name="address1" th:value="${account.address1}"size="14" />
+            <tr>address2：</tr>
+                    <input type="text" name="address2" th:value="${account.address2}"size="14" />
+            <tr>city：</tr>
+                    <input type="text" name="city" th:value="${account.city}"size="14" />
+            <br>
+            <tr>state：</tr>
+                    <input type="text" name="state" th:value="${account.state}" size="14" />
+
+            <tr>zip：</tr>
+                    <input type="text" name="zip"th:value="${account.zip}" size="14" />
+            <tr>country：</tr>
+                    <input type="text" name="country" th:value="${account.country}"size="14" />
+            <tr>phone：</tr>
+                    <input type="text" name="phone" th:value="${account.phone}"size="14" />
+            <br>
+            <tr>password：</tr>
+                    <input type="text" name="password" th:value="${account.password}"size="14" />
+
+                    <input type="submit" name="updateAccountInfo" value="更新"/>
+                </form>
+            </tr>
+        </table>
+    </div>
+</div>
+<footer th:replace="common/bottom"></footer>
+</body>
+</html>

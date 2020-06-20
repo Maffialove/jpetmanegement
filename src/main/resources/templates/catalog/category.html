@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MyPetStore Management</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+
+</div>
+<div id="Content">
+    <div id="BackLink">
+        <a href="/catalog/view">Return to Main Menu</a>
+    </div>
+
+    <div id="Catalog">
+
+        <table>
+<!--            <tr>-->
+<!--                <a href="/catalog/view">新增</a>-->
+<!--            </tr>-->
+            <tr>
+                <th>Category ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Management</th>
+                <th>Delete</th>
+            </tr>
+
+            <tr th:each="category:${categoryList}">
+                <td th:text="${category.categoryId}">category ID</td>
+                <td th:text="${category.name}">category Name</td>
+                <td th:text="${category.description}">category description</td>
+                <td><a th:href="@{/catalog/updateCategory?categoryId=}+${category.categoryId}" >修改</a></td>
+                <td><a th:href="@{/catalog/deleteCategory?categoryId=}+${category.categoryId}" >删除</a></td>
+            </tr>
+        </table>
+        <tr>
+            <form action="/catalog/searchCategory" method="get">
+                <tr>搜索(name)：</tr>
+                <input type="text" name="name" size="14" />
+                <input type="submit" name="searchCategory" value="搜索"/>
+            </form>
+        </tr>
+        <tr></tr>
+        <tr>
+            <form action="/catalog/addCategory" method="get" enctype="multipart/form-data">
+                <tr>categoryId：</tr>
+                <input type="text" name="categoryId" size="14" />
+                <tr>name：</tr>
+                <input type="text" name="name" size="14" />
+                <tr>description：</tr>
+                <input type="text" name="description" size="14" />
+<!--                <label for="file">图片：</label>-->
+<!--                <input id="file" name ="file"type="file">-->
+                <input type="submit" name="addCategory" value="新增"/>
+            </form>
+        </tr>
+
+
+    </div>
+</div>
+<footer th:replace="common/bottom"></footer>
+</body>
+</html>

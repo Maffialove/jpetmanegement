@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MyPetStore Management</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+
+</div>
+<div id="Content">
+    <div id="BackLink">
+        <a href="/catalog/view">Return to Main Menu</a>
+    </div>
+
+    <div id="Catalog">
+
+        <table>
+            <tr>
+                <th>User ID</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>status</th>
+                <th>address1</th>
+                <th>address2</th>
+                <th>City</th>
+                <th>state</th>
+                <th>zip</th>
+                <th>country</th>
+                <th>phone</th>
+                <th>password</th>
+                <th>修改</th>
+                <th>密码重置</th>
+            </tr>
+
+            <tr th:each="account:${accountList}">
+                <td th:text="${account.username}">User ID</td>
+                <td th:text="${account.email}">Email</td>
+                <td th:text="${account.firstName}">First Name</td>
+                <td th:text="${account.lastName}">Last Name</td>
+                <td th:text="${account.status}">status</td>
+                <td th:text="${account.address1}">address1</td>
+                <td th:text="${account.address2}">address2</td>
+                <td th:text="${account.city}">City Name</td>
+                <td th:text="${account.state}">state Name</td>
+                <td th:text="${account.zip}">zip Name</td>
+                <td th:text="${account.country}">country Name</td>
+                <td th:text="${account.phone}">phone</td>
+                <td th:text="${account.password}">password</td>
+                <td><a th:href="@{/account/updateAccount?userId=}+${account.username}" >修改</a></td>
+                <td><a th:href="@{/account/resetAccount?userId=}+${account.username}" >重置密码</a></td>
+<!--                <td><a th:href="@{/catalog/resetProduct?productId=}+${product.productId}" >重置密码</a></td>-->
+            </tr>
+        </table>
+    </div>
+</div>
+<footer th:replace="common/bottom"></footer>
+</body>
+</html>

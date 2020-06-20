@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MyPetStore Management</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+
+</div>
+<div id="Content">
+    <div id="BackLink">
+        <a href="/catalog/view">Return to Main Menu</a>
+    </div>
+
+    <div id="Catalog">
+
+        <table>
+            <tr>
+                <th>Product ID</th>
+                <th>Category ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Ground</th>
+            </tr>
+
+            <tr th:each="product:${productList}">
+                <td th:text="${product.productId}">product ID</td>
+                <td th:text="${product.categoryId}">category ID</td>
+                <td th:text="${product.name}">product Name</td>
+                <td th:text="${product.description}">product description</td>
+<!--                <td th:text="${product.ground}">ground</td>-->
+                <td><a th:href="@{/catalog/groundProduct?productId=}+${product.productId}"  th:text="${product.ground}">ground</a></td>
+                <td><a th:href="@{/catalog/updateProduct?productId=}+${product.productId}" >修改</a></td>
+                <td><a th:href="@{/catalog/deleteProduct?productId=}+${product.productId}" >删除</a></td>
+            </tr>
+        </table>
+        <tr>
+            <form action="/catalog/searchProduct" method="get">
+                <tr>搜索(name)：</tr>
+                <input type="text" name="name" size="14" />
+                <input type="submit" name="searchProduct" value="搜索"/>
+            </form>
+        </tr>
+        <tr>
+            <form action="/catalog/addProduct" method="get">
+                <tr>productId：</tr>
+                <input type="text" name="productId" size="20" />
+        <tr>categoryId（已存在）：</tr>
+                <input type="text" name="categoryId" size="20" />
+        <br>
+        <tr>name：</tr>
+                <input type="text" name="name" size="20" />
+        <tr>description：</tr>
+                <input type="text" name="description" size="20" />
+                <input type="submit" name="addCategory" value="新增"/>
+            </form>
+        </tr>
+    </div>
+</div>
+<footer th:replace="common/bottom"></footer>
+</body>
+</html>

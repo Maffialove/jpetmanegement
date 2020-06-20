@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MyPetStore Management</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+
+</div>
+<div id="Content">
+    <div id="BackLink">
+        <a href="/catalog/view">Return to Main Menu</a>
+    </div>
+
+    <div id="Catalog">
+
+        <table>
+            <tr>
+                <th>orderId</th>
+                <th>username</th>
+                <th>orderDate</th>
+                <th>shipAddress1</th>
+                <th>shipAddress2</th>
+                <th>shipCity</th>
+                <th>shipState</th>
+                <th>shipZip</th>
+                <th>shipCountry</th>
+                <th>billAddress1</th>
+                <th>billAddress2</th>
+                <th>billCity</th>
+                <th>billState</th>
+                <th>billZip</th>
+                <th>billCountry</th>
+                <th>courier</th>
+                <th>totalPrice</th>
+                <th>billToFirstName</th>
+                <th>billToLastName</th>
+                <th>shipToFirstName</th>
+                <th>shipToLastName</th>
+                <th>creditCard</th>
+                <th>expiryDate</th>
+                <th>cardType</th>
+                <th>locale</th>
+            </tr>
+
+            <tr th:each="order:${orderList}">
+                <td th:text="${order.orderId}">orderId</td>
+                <td th:text="${order.username}">username</td>
+                <td th:text="${order.orderDate}">orderDate</td>
+                <td th:text="${order.shipAddress1}">shipAddress1</td>
+                <td th:text="${order.shipAddress2}">shipAddress2</td>
+                <td th:text="${order.shipCity}">shipCity</td>
+                <td th:text="${order.shipState}">shipState</td>
+                <td th:text="${order.shipZip}">shipZip</td>
+                <td th:text="${order.shipCountry}">shipCountry</td>
+                <td th:text="${order.billAddress1}">billAddress1</td>
+                <td th:text="${order.billAddress2}">billAddress2</td>
+                <td th:text="${order.billCity}">billCity</td>
+                <td th:text="${order.billState}">billState</td>
+                <td th:text="${order.billZip}">billZip</td>
+                <td th:text="${order.billCountry}">billCountry</td>
+                <td th:text="${order.courier}">courier</td>
+                <td th:text="${order.totalPrice}">totalPrice</td>
+                <td th:text="${order.billToFirstName}">billToFirstName</td>
+                <td th:text="${order.billToLastName}">billToLastName</td>
+                <td th:text="${order.shipToFirstName}">shipToFirstName</td>
+                <td th:text="${order.shipToLastName}">shipToLastName</td>
+                <td th:text="${order.creditCard}">creditCard</td>
+                <td th:text="${order.expiryDate}">expiryDate</td>
+                <td th:text="${order.cardType}">cardType</td>
+                <td th:text="${order.locale}">locale</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<footer th:replace="common/bottom"></footer>
+</body>
+</html>

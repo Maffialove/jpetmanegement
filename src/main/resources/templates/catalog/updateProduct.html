@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MyPetStore Management</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+
+</div>
+<div id="Content">
+    <div id="BackLink">
+        <a href="/catalog/view">Return to Main Menu</a>
+    </div>
+
+    <div id="Catalog">
+
+        <table>
+            <tr>
+                <th>Product ID</th>
+                <th>Category ID</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+
+            <tr>
+                <td th:text="${product.productId}"> product Id</td>
+                <td th:text="${product.categoryId}">category ID</td>
+                <td th:text="${product.name}"> Name</td>
+                <td th:text="${product.description}">description</td>
+            </tr>
+
+            <tr>
+                <form action="/catalog/updateProductInfo" method="get">
+        <tr>原来的productId：</tr>
+                    <input type="text" name="productId" th:value="${product.productId}"size="20" />
+        <tr>新的productId：</tr>
+                    <input type="text" name="newProductId" size="20" />
+        <tr>categoryId（不能修改）：</tr>
+                    <input type="text" name="categoryId"th:value="${product.categoryId}" size="20" />
+        <br>
+        <tr>要修改的name：</tr>
+                    <input type="text" name="name" size="20" />
+        <tr>要修改的描述：</tr>
+                    <input type="text" name="description" size="20" />
+                    <input type="submit" name="updateProductInfo" value="更新"/>
+                </form>
+            </tr>
+        </table>
+    </div>
+</div>
+<footer th:replace="common/bottom"></footer>
+</body>
+</html>

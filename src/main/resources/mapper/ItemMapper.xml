@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.jpetmanegement.persistence.ItemMapper">
+    <cache/>
+
+    <select id="getItemList"  resultType="Item">
+        SELECT
+            ITEMID,
+            productid,
+            LISTPRICE,
+            UNITCOST,
+            SUPPLIER AS supplierId,
+            STATUS,
+            ATTR1 AS attribute1,
+            ATTR2 AS attribute2,
+            ATTR3 AS attribute3,
+            ATTR4 AS attribute4,
+            ATTR5 AS attribute5
+        FROM ITEM
+    </select>
+
+    <select id="getItem" parameterType="string" resultType="Item">
+
+        SELECT
+            ITEMID,
+            productid,
+            LISTPRICE,
+            UNITCOST,
+            SUPPLIER AS supplierId,
+            STATUS,
+            ATTR1 AS attribute1,
+            ATTR2 AS attribute2,
+            ATTR3 AS attribute3,
+            ATTR4 AS attribute4,
+            ATTR5 AS attribute5
+        FROM ITEM
+        where itemId=#{itemId};
+    </select>
+
+    <select id="getInventoryQuantity" parameterType="string" resultType="int">
+        SELECT QTY AS value
+        FROM INVENTORY
+        WHERE ITEMID = #{itemId}
+    </select>
+
+    <update id="updateInventoryQuantity" parameterType="map">
+        UPDATE INVENTORY SET
+            QTY = QTY - #{increment}
+        WHERE ITEMID = #{itemId}
+    </update>
+
+
+    <select id="searchItemList" parameterType="string" resultType="Item">
+        SELECT
+            ITEMID,
+            productid,
+            LISTPRICE,
+            UNITCOST,
+            SUPPLIER AS supplierId,
+            STATUS,
+            ATTR1 AS attribute1,
+            ATTR2 AS attribute2,
+            ATTR3 AS attribute3,
+            ATTR4 AS attribute4,
+            ATTR5 AS attribute5
+        FROM item
+        WHERE lower(productid) like #{value}
+    </select>
+
+    <insert id="addItem" parameterType="string">
+        insert into item values (#{itemId},#{productId},#{listPrice},#{unitCost},1,#{status},#{attribute1},"1","1","1","1")
+
+    </insert>
+
+    <delete id="deleteItem" parameterType="string">
+        delete from item where itemId = #{itemId}
+    </delete>
+
+
+    <update id="updateItem" parameterType="string">
+        update item set itemid=#{newItemId} , productId = #{productId} ,listPrice=#{listPrice},unitCost=#{unitCost},SUPPLIER=1,
+        STATUS=#{status},ATTR1=#{attribute1},ATTR2="1",ATTR3="1",ATTR3="1",ATTR5="1"
+        where productid = #{itemId}
+    </update>
+</mapper>

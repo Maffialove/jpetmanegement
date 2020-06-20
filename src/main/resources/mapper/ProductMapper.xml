@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.jpetmanegement.persistence.ProductMapper">
+    <cache/>
+
+    <select id="getProduct" parameterType="string" resultType="Product">
+        SELECT
+            PRODUCTID,
+            NAME,
+            DESCN as description,
+            CATEGORY as categoryId,
+            ground
+        FROM PRODUCT
+        WHERE PRODUCTID = #{productId}
+    </select>
+
+    <select id="getProductGround" parameterType="string" resultType="string">
+        SELECT
+            ground
+        FROM PRODUCT
+        WHERE PRODUCTID = #{productId}
+    </select>
+
+    <select id="getProductList" resultType="Product">
+        SELECT
+            PRODUCTID,
+            NAME,
+            DESCN as description,
+            CATEGORY as categoryId,
+            ground
+        FROM PRODUCT
+    </select>
+
+    <select id="searchProductList" parameterType="string" resultType="Product">
+        SELECT
+            PRODUCTID,
+            NAME,
+            DESCN as description,
+            CATEGORY as categoryId,
+            ground
+        FROM PRODUCT
+        WHERE lower(name) like #{value}
+    </select>
+
+
+    <update id="updateProductGround" parameterType="string">
+        update product set ground=#{ground} where productId=#{productId}
+    </update>
+
+    <insert id="addProduct" parameterType="string">
+        insert into PRODUCT values (#{productId},#{categoryId},#{name},#{description},"grounded")
+    </insert>
+
+    <delete id="deleteProduct" parameterType="string">
+        delete from product where productid = #{productId}
+    </delete>
+
+    <delete id="deleteProductItem" parameterType="string">
+        delete from item where productid = #{productId}
+
+    </delete>
+    <update id="updateProduct" parameterType="string">
+        update Product set productid=#{newProductId} , name = #{name} , descn = #{description} where productid = #{productId}
+    </update>
+</mapper>

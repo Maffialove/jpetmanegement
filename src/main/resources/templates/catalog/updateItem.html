@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MyPetStore Management</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+
+</div>
+<div id="Content">
+    <div id="BackLink">
+        <a href="/catalog/view">Return to Main Menu</a>
+    </div>
+
+    <div id="Catalog">
+
+        <table>
+            <tr>
+                <th>Item ID</th>
+                <th>Product ID</th>
+                <th>List Price</th>
+                <th>Unit Cost</th>
+                <th>Supplier Id</th>
+                <th>status</th>
+                <th>attribute1</th>
+            </tr>
+
+            <tr>
+                <td th:text="${item.itemId}">item ID</td>
+                <td th:text="${item.productId}">Product ID</td>
+                <td th:text="${item.listPrice}">List Price</td>
+                <td th:text="${item.unitCost}">Unit Cost</td>
+                <td th:text="${item.supplierId}">Supplier Id</td>
+                <td th:text="${item.status}">status</td>
+                <td th:text="${item.attribute1}">attribute1</td>
+            </tr>
+
+            <tr>
+                <form action="/catalog/updateItemInfo" method="get">
+            <tr>原来的itemId：</tr>
+                <input type="text" name="itemId" th:value="${item.itemId}"size="20" />
+            <tr>新的itemId：</tr>
+                <input type="text" name="newItemId" size="20" />
+            <tr>productId（不能修改）：</tr>
+                <input type="text" name="productId"th:value="${item.productId}" size="20" />
+            <br>
+            <tr>要修改的listPrice：</tr>
+                <input type="text" name="listPrice" size="20" />
+            <tr>要修改的unitCost：</tr>
+                <input type="text" name="unitCost" size="20" />
+            <tr>要修改的supplierId：</tr>
+                <input type="text" name="supplierId" size="20" />
+            <tr>要修改的status：</tr>
+                <input type="text" name="status" size="20" />
+            <br>
+            <tr>要修改的attribute1：</tr>
+                <input type="text" name="attribute1" size="20" />
+                <input type="submit" name="updateItemInfo" value="更新"/>
+            </form>
+            </tr>
+        </table>
+    </div>
+</div>
+<footer th:replace="common/bottom"></footer>
+</body>
+</html>

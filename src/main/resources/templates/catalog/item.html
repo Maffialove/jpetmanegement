@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MyPetStore Management</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+
+</div>
+<div id="Content">
+    <div id="BackLink">
+        <a href="/catalog/view">Return to Main Menu</a>
+    </div>
+
+    <div id="Catalog">
+
+        <table>
+            <tr>
+                <th>Item ID</th>
+                <th>Product ID</th>
+                <th>List Price</th>
+                <th>Unit Cost</th>
+                <th>Supplier Id</th>
+                <th>status</th>
+                <th>attribute1</th>
+                <th>修改</th>
+                <th>删除</th>
+<!--                <th>attribute2</th>-->
+<!--                <th>attribute3</th>-->
+<!--                <th>attribute4</th>-->
+<!--                <th>attribute5</th>-->
+            </tr>
+
+            <tr th:each="item:${itemList}">
+                <td th:text="${item.itemId}">item ID</td>
+                <td th:text="${item.productId}">Product ID</td>
+                <td th:text="${item.listPrice}">List Price</td>
+                <td th:text="${item.unitCost}">Unit Cost</td>
+                <td th:text="${item.supplierId}">Supplier Id</td>
+                <td th:text="${item.status}">status</td>
+                <td th:text="${item.attribute1}">attribute1</td>
+                <td><a th:href="@{/catalog/updateItem?itemId=}+${item.itemId}" >修改</a></td>
+                <td><a th:href="@{/catalog/deleteItem?itemId=}+${item.itemId}" >删除</a></td>
+<!--                <td th:text="${item.attribute2}">attribute2</td>-->
+<!--                <td th:text="${item.attribute3}">attribute3</td>-->
+<!--                <td th:text="${item.attribute4}">attribute4</td>-->
+<!--                <td th:text="${item.attribute5}">attribute5</td>-->
+            </tr>
+        </table>
+        <tr>
+            <form action="/catalog/searchItem" method="get">
+        <tr>搜索(productId)：</tr>
+                <input type="text" name="name" size="14" />
+                <input type="submit" name="searchItem" value="搜索"/>
+            </form>
+        </tr>
+        <br>
+        <tr>
+            <form action="/catalog/addItem" method="get">
+        <tr>itemId：</tr>
+                <input type="text" name="itemId" size="14" />
+        <tr>productId(exist)：</tr>
+                <input type="text" name="productId" size="14" />
+        <tr>listPrice：</tr>
+                <input type="text" name="listPrice" size="14" />
+        <br>
+        <tr>unitCost：</tr>
+                <input type="text" name="unitCost" size="14" />
+        <tr>supplierId：</tr>
+                <input type="text" name="supplierId" size="14" />
+        <tr>status：</tr>
+                <input type="text" name="status" size="14" />
+        <br>
+        <tr>attribute1：</tr>
+                <input type="text" name="attribute1" size="14" />
+                <input type="submit" name="addItem" value="新增"/>
+            </form>
+        </tr>
+    </div>
+</div>
+<footer th:replace="common/bottom"></footer>
+</body>
+</html>

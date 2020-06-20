@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.jpetmanegement.persistence.CategoryMapper">
+    <cache/>
+
+    <select id="getCategory" parameterType="string" resultType="Category">
+        SELECT
+            CATID AS categoryId,
+            NAME,
+            DESCN AS description
+        FROM CATEGORY
+        WHERE CATID = #{categoryId}
+    </select>
+
+    <select id="getCategoryList" resultType="Category">
+        SELECT
+            CATID AS categoryId,
+        NAME,
+        DESCN AS description
+        FROM CATEGORY
+    </select>
+
+    <delete id="deleteCategory" parameterType="string">
+        delete from Category where CATID = #{categoryId}
+    </delete>
+    <delete id="deleteCategoryProduct" parameterType="string">
+        delete from product where category = #{categoryId}
+    </delete>
+    <delete id="deleteCategoryProductItem" parameterType="string">
+        DELETE item FROM item INNER JOIN product WHERE item.productid = product.productid and product.category =#{categoryId};
+    </delete>
+
+    <insert id="addCategory" parameterType="string">
+        insert into Category values (#{categoryId},#{name},#{description})
+    </insert>
+
+    <update id="updateCategory" parameterType="string">
+        update Category set catid=#{newCategoryId} , name = #{name} , descn = #{description} where catid = #{categoryId}
+    </update>
+
+    <select id="searchCategoryList" parameterType="string" resultType="Category">
+        SELECT
+            CATID AS categoryId,
+            NAME,
+            DESCN AS description
+        FROM CATEGORY
+        WHERE lower(name) like #{value}
+    </select>
+</mapper>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MyPetStore Management</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+</head>
+<body>
+<div th:replace="common/top">
+
+</div>
+<div id="Content">
+    <div id="BackLink">
+        <a href="/catalog/view">Return to Main Menu</a>
+    </div>
+
+    <div id="Catalog">
+
+        <table>
+            <tr>
+                <th>Category ID</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+
+            <tr>
+                <td th:text="${category.categoryId}">category ID</td>
+                <td th:text="${category.name}"> Name</td>
+                <td th:text="${category.description}">description</td>
+            </tr>
+
+            <tr>
+                <form action="/catalog/updateCategoryInfo" method="get">
+            <tr>要修改的id：</tr>
+                    <input type="text" name="categoryId" th:value="${category.categoryId}" size="20" />
+            <tr>新的id：</tr>
+                    <input type="text" name="newCategoryId" size="20" />
+            <br>
+            <tr>新的name</tr>
+                    <input type="text" name="name" size="20" />
+            <tr>新的描述</tr>
+                    <input type="text" name="description" size="20" />
+                    <input type="submit" name="updateCategoryInfo" value="更新"/>
+                </form>
+            </tr>
+        </table>
+    </div>
+</div>
+<footer th:replace="common/bottom"></footer>
+</body>
+</html>
